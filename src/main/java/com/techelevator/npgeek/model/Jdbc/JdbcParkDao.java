@@ -8,10 +8,13 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Park;
 import com.techelevator.npgeek.model.ParkDAO;
 
+
+@Component
 public class JdbcParkDao  implements ParkDAO{
 	
 	private JdbcTemplate jdbcTemplate;
@@ -33,6 +36,19 @@ public class JdbcParkDao  implements ParkDAO{
  		}
 		return listOfParks;
 	}
+	
+	public Park getParkDetails(String parkcode){
+		parkcode = parkcode.toUpperCase();
+		Park thePark = new Park();
+		String sql = "SELECT * FROM park WHERE parkcode = ?;";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, parkcode);
+		
+		while(results.next()) {
+			thePark = mapRowToPark(results);
+		}
+		
+		return thePark;	
+	}
 
 
 	private Park mapRowToPark(SqlRowSet results) {
@@ -43,7 +59,7 @@ public class JdbcParkDao  implements ParkDAO{
 	thePark.setState(results.getString("state"));
 	thePark.setAcreage(results.getLong("acreage"));
 	thePark.setElevationinfeet(results.getLong("elevationinfeet"));
-	thePark.setMilesoftrail(results.getLong("milesoftrail"));
+	thePark.setMilesoftrail(results.getDouble("milesoftrail"));
 	thePark.setNumberofcampsites(results.getLong("numberofcampsites"));
 	thePark.setClimate(results.getString("climate"));
 	thePark.setYearfounded(results.getLong("yearfounded"));
@@ -52,11 +68,12 @@ public class JdbcParkDao  implements ParkDAO{
 	thePark.setEntryfee(results.getLong("entryfee"));
 	thePark.setNumberofanimalspecies(results.getLong("numberofanimalspecies"));
 	thePark.setInspirationalquotesource(results.getString("inspirationalquotesource"));
-	
-	
+	thePark.setParkcode(results.getString("parkcode").toLowerCase());
+	thePark.setParkdescription(results.getString("parkdescription"));
 		return thePark;
 	
-	
+		
+		
 	}	
 	
 }

@@ -7,6 +7,6 @@ import com.techelevator.model.Park;
 public interface ParkDAO {
 
 List<Park> getAllParks();
-
+public Park getParkDetails(String parkcode);
 	
 }

@@ -2,12 +2,13 @@ package com.techelevator.model;
 
 public class Park {
 
+	private String parkcode;
 	
 	private String parkname;
 	private String state;
 	private Long  acreage;
 	private Long elevationinfeet;
-	private Long milesoftrail;
+	private Double milesoftrail;
 	private Long numberofcampsites;
 	private String climate;
 	private Long yearfounded;
@@ -16,9 +17,16 @@ public class Park {
 	private Long entryfee;
 	private Long numberofanimalspecies;
 	private String inspirationalquotesource;
+	private String parkdescription;
 	
 	
 
+	public String getParkdescription() {
+		return parkdescription;
+	}
+	public void setParkdescription(String parkdescription) {
+		this.parkdescription = parkdescription;
+	}
 	public String getInspirationalquotesource() {
 		return inspirationalquotesource;
 	}
@@ -49,10 +57,10 @@ public class Park {
 	public void setElevationinfeet(Long elevationinfeet) {
 		this.elevationinfeet = elevationinfeet;
 	}
-	public Long getMilesoftrail() {
+	public Double getMilesoftrail() {
 		return milesoftrail;
 	}
-	public void setMilesoftrail(Long milesoftrail) {
+	public void setMilesoftrail(Double milesoftrail) {
 		this.milesoftrail = milesoftrail;
 	}
 	public Long getNumberofcampsites() {
@@ -97,7 +105,12 @@ public class Park {
 	public void setNumberofanimalspecies(Long numberofanimalspecies) {
 		this.numberofanimalspecies = numberofanimalspecies;
 	}
-	
+	public String getParkcode() {
+		return parkcode;
+	}
+	public void setParkcode(String parkcode) {
+		this.parkcode = parkcode;
+	}
 	
 	
 }
