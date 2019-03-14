@@ -56,6 +56,11 @@ public class ParksController {
 		return "parkDetails";
 	}
 	
+	@RequestMapping("/survey")
+	public String displaySurvey() {
+		return "survey";
+	}
+	
 	@RequestMapping(path="/survey", method=RequestMethod.POST)
 	public String submitSurvey(Survey survey, RedirectAttributes flashScope) {
 		flashScope.addFlashAttribute("Thank you");
