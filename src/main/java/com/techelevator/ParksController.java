@@ -79,7 +79,8 @@ public class ParksController {
 		
 		
 		LinkedList<DailySurvey> theSurvey = surveyDao.getDailySurveys();
-		System.out.println(theSurvey.isEmpty());
+		
+		
 		modelHolder.addAttribute("dailySurvey", theSurvey);
 		
 		return "surveyResults";

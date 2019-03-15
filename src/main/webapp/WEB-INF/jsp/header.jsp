@@ -37,7 +37,7 @@
     </nav>
   </div>
     
-        
+  <c:set var="temp" value="F" scope="session"/>     
  </section>       
 
 

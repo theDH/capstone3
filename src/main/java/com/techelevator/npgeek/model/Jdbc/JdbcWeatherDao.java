@@ -46,7 +46,7 @@ public class JdbcWeatherDao implements WeatherDAO{
 	private Weather mapRowToPark(SqlRowSet results) {
 		Weather theWeather = new Weather();
 		
-		theWeather.setFiveDayForecastValue(results.getLong("fivedayforecastvalue"));
+		
 		theWeather.setHigh(results.getLong("high"));
 		theWeather.setLow(results.getLong("low"));
 		theWeather.setParkCode(results.getString("parkcode"));
