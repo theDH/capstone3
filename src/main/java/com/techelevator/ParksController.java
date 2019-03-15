@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,11 +46,14 @@ public class ParksController {
 	}
 
 	@RequestMapping (path="/parkDetails")
-	public String displayParkDetails(ModelMap modelHolder, @RequestParam String parkcode)  {
-		
+	public String displayParkDetails(ModelMap modelHolder, @RequestParam String parkcode, HttpSession session)  {
+		if (session.getAttribute("temp") == null){
+			session.setAttribute("temp", "Fahrenheit");
+		}
 		
 		Park park = parkDao.getParkDetails(parkcode);
 		
+		modelHolder.addAttribute("park", park);
 		
 		LinkedList<Weather> fiveDay = weatherDao.getWeather(parkcode);
 		
@@ -84,6 +88,22 @@ public class ParksController {
 		modelHolder.addAttribute("dailySurvey", theSurvey);
 		
 		return "surveyResults";
+	}
+	
+	@RequestMapping(path="/tempConversion", method=RequestMethod.POST)
+	public String convertTemp(HttpServletRequest request, HttpSession session, @RequestParam String parkcode) {
+		System.out.println(session.getAttribute("temp"));
+		
+		if (session.getAttribute("temp").equals("Fahrenheit")) {
+			session.setAttribute("temp", "Celsius");
+			return "redirect:/parkDetails?parkcode="+parkcode;
+		}else {
+			session.setAttribute("temp", "Fahrenheit");
+			return "redirect:/parkDetails?parkcode="+parkcode;
+			
+		}
+		
+		
 	}
 	
 }

@@ -37,7 +37,8 @@
     </nav>
   </div>
     
-  <c:set var="temp" value="F" scope="session"/>     
+  <c:set var="temp" value="Fahrenheit" scope="session"/>
+    
  </section>       
 
 

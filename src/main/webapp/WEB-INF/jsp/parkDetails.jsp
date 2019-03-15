@@ -30,9 +30,9 @@
 			<c:if test="${park.entryfee > 0}">
 				<li>Entry fee: $${park.entryfee}.00</li>
 			</c:if>
-			<li>${park.acreage}sq acres</li>
-			<li>${park.elevationinfeet} ft elevation</li>
-			<li>${park.milesoftrail} miles of trails</li>
+			<li>${park.acreage} sq acres</li>
+			<li>${park.elevationinfeet}ft elevation</li>
+			<li>${park.milesoftrail}miles of trails</li>
 
 			<c:if test="${park.numberofcampsites > 0}">
 				<li>Number of campsites: ${park.numberofcampsites}</li>
@@ -40,51 +40,70 @@
 
 			<li>Climate: ${park.climate}</li>
 			<li>Annual visitor count: ${park.annualvisitorcount}</li>
-			<li>${park.numberofanimalspecies} different animal species</li>
+			<li>${park.numberofanimalspecies}different animal species</li>
 			<li>${park.inspirationalquote}</li>
 			<li>-${park.inspirationalquotesource}</li>
 
 		</ul>
 	</div>
+	<c:url var="tempURL" value="/tempConversion" />
 
-<form action=${pickTemp} method="GET">
-<label>Choose Farhenheit or Celsius:</label>
+	<form action=${tempURL} method="POST">
+<label for="temp">Choose Fahrenheit or Celsius:</label>
+
 <select name="temp">
 <option value="" disabled selected>Select</option>
-<option value="Farhenheit">Farhenheit</option>
+<option value="Farhenheit">Fahrenheit</option>
 <option value="Celsius">Celsius</option>
-
-
-
 </select>
+
+<input name="temp" type="hidden" value="${temp}"/>
+<input type="submit"/>
 </form>
 
 	<div class="table">
-
 		<tr>
-
 			<div class="columns">
 				<c:forEach var="weather" items="${weather}">
-				<div class="column">
-				<img id="weather-img" src="img/weather/${weather.forecastImage}.png"/>
-					
+					<div class="column">
+						<img id="weather-img"
+							src="img/weather/${weather.forecastImage}.png"/>
 
 						<li>${weather.forecast}</li>
-						<li>${weather.high} degrees</li> 
-						<li>${weather.low} degrees</li>
+						<li>${weather.high}degrees</li>
+						<li>${weather.low}degrees</li>
 						<c:if test="${weather.parkAdvice == false}">
 							<li>${weather.parkAdvice}</li>
 						</c:if>
 						<c:if test="${weather.parkTempAdvice == false}">
 							<li>${weather.parkTempAdvice}</li>
 						</c:if>
-						</div>
+					</div>
 
 				</c:forEach>
 			</div>
 		</tr>
 
 	</div>
+
+	<c:forEach var="weather" items="${weather}">
+		<tr>
+			<td>${weather.fiveDayForecastValue}</td>
+			<c:choose>
+				<c:when test='${temp eq "Celsius"}'>
+					<td>${temp}</td>
+					<td>${weather.highInC}</td>
+				</c:when>
+				<c:when test='${temp eq "Fahrenheit"}'>
+					<td>${temp}</td>
+					<td>${weather.high}</td>
+				</c:when>
+			</c:choose>
+			<td>${weather.forecast}<img height=20px width=20px
+				src="<c:url value="/img/weather/${weather.forecast}.png"/>"/>
+			</td>
+		</tr>
+	</c:forEach>
 
 </body>
 </html>

@@ -10,6 +10,9 @@ public class Weather {
 	private String forecastImage;
 	private String parkAdvice;
 	private String parkTempAdvice;
+	private Long lowInC;
+	private Long highInC;
+	
 	
 	
 	
@@ -98,6 +101,24 @@ public class Weather {
 	public void setParkAdvice(String parkAdvice) {
 		this.parkAdvice = parkAdvice;
 	}
+	
+	public Long getLowInC() {
+		return lowInC;
+	}
+	public void setLowInC(Long lowInC) {
+		
+		this.lowInC = ((low-32) * 5)/9;
+		
+	}
+	public Long getHighInC() {
+		return highInC;
+	}
+	public void setHighInC(Long highInC) {
+		
+		this.highInC = ((high-32) * 5)/9;
+		
+	}
+	
 	
 	
 	
