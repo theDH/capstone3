@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="submitSurvey" method="POST">
+<form action="submitSurvey" method="POST" >
 	
 	
 	<label>Choose a National Park</label> 
@@ -84,7 +84,7 @@
 				</select> 
 				
 	<label>Physical Activity Level</label> 
-	<select name="activity" id="activity">
+	<select name="activityLevel" id="activity">
 					<option value="" disabled selected>Select</option>
 					<option value="Inactive">Inactive</option>
 					<option value="Sedentary">Sedentary</option>
@@ -93,8 +93,10 @@
 					</select>
 					
 					<label>Enter your E-mail address:</label>
-					<input type="email" name = "email" id="email_input_box"/> 
-					<input type="submit"/>
+					
+					<input type="email" name = "emailAddress" id="email_input_box"/> 
+					
+					<input type="submit" value="Submit"/>
 			</form>
 				
 </body>

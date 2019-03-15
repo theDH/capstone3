@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.DailySurvey;
 import com.techelevator.model.Park;
 import com.techelevator.model.Survey;
 import com.techelevator.model.Weather;
@@ -48,7 +51,7 @@ public class ParksController {
 		Park park = parkDao.getParkDetails(parkcode);
 		
 		
-		List<Weather> fiveDay = weatherDao.getWeather(parkcode);
+		LinkedList<Weather> fiveDay = weatherDao.getWeather(parkcode);
 		
 		modelHolder.addAttribute("park", park);
 		modelHolder.addAttribute("weather", fiveDay);
@@ -61,11 +64,25 @@ public class ParksController {
 		return "survey";
 	}
 	
-	@RequestMapping(path="/survey", method=RequestMethod.POST)
+	@RequestMapping(path="/submitSurvey", method=RequestMethod.POST)
 	public String submitSurvey(Survey survey, RedirectAttributes flashScope) {
-		flashScope.addFlashAttribute("Thank you");
-		//add method to save survey
+		
+		surveyDao.saveSurvey(survey);
+		
+		flashScope.addFlashAttribute("Thank you", true);
+		
 		return "redirect:/surveyResults";
+	}
+	
+	@RequestMapping("/surveyResults") 
+	public String displaySurveyResults(ModelMap modelHolder) {	
+		
+		
+		LinkedList<DailySurvey> theSurvey = surveyDao.getDailySurveys();
+		System.out.println(theSurvey.isEmpty());
+		modelHolder.addAttribute("dailySurvey", theSurvey);
+		
+		return "surveyResults";
 	}
 	
 }

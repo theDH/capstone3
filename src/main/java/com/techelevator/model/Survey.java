@@ -7,6 +7,7 @@ public class Survey {
 	private String state;
 	private String activityLevel;
 	private String park;
+	private Long surveyId;
 	
 	public String getEmailAddress() {
 		return emailAddress;
@@ -32,6 +33,13 @@ public class Survey {
 	public void setPark(String park) {
 		this.park = park;
 	}
-
+	public Long getSurveyid() {
+		return surveyId;
+	}
+	public void setSurveyid(Long surveyid) {
+		this.surveyId = surveyid;
+	}
+ 
+	
 	
 }

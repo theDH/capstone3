@@ -1,11 +1,12 @@
 package com.techelevator.npgeek.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.techelevator.model.Weather;
 
 public interface WeatherDAO {
 
-	 List<Weather> getWeather(String parkCode);
+	 LinkedList<Weather> getWeather(String parkCode);
 	
 }

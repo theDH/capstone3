@@ -25,7 +25,7 @@ public class JdbcWeatherDao implements WeatherDAO{
 	}
 	
 	@Override
-	public List<Weather> getWeather(String parkCode){
+	public LinkedList<Weather> getWeather(String parkCode){
 		
 		
 		parkCode = parkCode.toUpperCase();

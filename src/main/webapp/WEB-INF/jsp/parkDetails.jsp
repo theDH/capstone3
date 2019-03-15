@@ -9,6 +9,8 @@
 <h1>Park Details</h1>
 <ul>
 <li>${park.parkdescription}</li>
+
+
 <c:forEach var="weather" items="${weather}">
 <li>${weather.forecast}</li>
 </c:forEach>
