@@ -69,6 +69,7 @@ public class ParksController {
 	
 		Park park = parkDao.getParkDetails(parkcode);
 		
+		modelHolder.addAttribute("park", park);
 		
 		LinkedList<Weather> fiveDay = weatherDao.getWeather(parkcode);
 		
@@ -103,6 +104,22 @@ public class ParksController {
 		modelHolder.addAttribute("dailySurvey", theSurvey);
 		
 		return "surveyResults";
+	}
+	
+	@RequestMapping(path="/tempConversion", method=RequestMethod.POST)
+	public String convertTemp(HttpServletRequest request, HttpSession session, @RequestParam String parkcode) {
+		System.out.println(session.getAttribute("temp"));
+		
+		if (session.getAttribute("temp").equals("Fahrenheit")) {
+			session.setAttribute("temp", "Celsius");
+			return "redirect:/parkDetails?parkcode="+parkcode;
+		}else {
+			session.setAttribute("temp", "Fahrenheit");
+			return "redirect:/parkDetails?parkcode="+parkcode;
+			
+		}
+		
+		
 	}
 	
 }
