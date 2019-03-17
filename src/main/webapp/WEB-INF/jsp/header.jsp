@@ -27,17 +27,18 @@
     <nav class="tabs">
       <div class="container">
         <ul>
-          <li class="is-active"><a>Overview</a></li>
+          <li class="is-active">
           <li><a href="${homePageURL}">Home</a></li>
             <li><a href="${surveyURL}">Survey</a></li>
           
+         
           
         </ul>
       </div>
     </nav>
   </div>
     
-  <c:set var="temp" value="F" scope="session"/>     
+     
  </section>       
 
 

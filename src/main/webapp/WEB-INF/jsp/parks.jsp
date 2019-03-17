@@ -4,6 +4,23 @@
 <c:import url="/WEB-INF/jsp/header.jsp"/>
     <%--<c:param name="pageTitle" value="Product List" />--%>
 
+
+ <form action="temp" method="POST"  >
+  
+					
+			<label>Choose Fahrenheit or Celsius:</label>
+				<select name="temp">
+				<option value="" disabled selected>Select</option>
+				<option value="f">Fahrenheit</option>
+				<option value="c">Celsius</option>
+				</select>
+
+			
+			<input type="submit"/>
+				
+				
+				</form>
+
 <c:forEach var="parks" items="${parks}">
 <nav class="level">
 

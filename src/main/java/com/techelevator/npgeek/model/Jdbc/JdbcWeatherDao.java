@@ -39,7 +39,7 @@ public class JdbcWeatherDao implements WeatherDAO{
 			Weather theWeather = mapRowToPark(results);
 			weatherForecast.add(theWeather);
 		}
-		System.out.println(weatherForecast.isEmpty());
+		
 		return weatherForecast;
 	}
 

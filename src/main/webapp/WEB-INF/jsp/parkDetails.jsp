@@ -46,18 +46,11 @@
 
 		</ul>
 	</div>
-
-<form action=${pickTemp} method="GET">
-<label>Choose Farhenheit or Celsius:</label>
-<select name="temp">
-<option value="" disabled selected>Select</option>
-<option value="Farhenheit">Farhenheit</option>
-<option value="Celsius">Celsius</option>
+	
+ 		
+ 
 
 
-
-</select>
-</form>
 
 	<div class="table">
 
@@ -68,10 +61,18 @@
 				<div class="column">
 				<img id="weather-img" src="img/weather/${weather.forecastImage}.png"/>
 					
-
+						
+							
 						<li>${weather.forecast}</li>
-						<li>${weather.high} degrees</li> 
-						<li>${weather.low} degrees</li>
+						<c:if test='${temp eq "c"}'>
+							<li>${weather.highInC} degrees</li>
+							<li>${weather.lowInC} degrees</li>
+						</c:if>	
+						<c:if test='${temp eq "f"}'>
+							<li>${weather.high} degrees</li>
+							<li>${weather.low} degrees</li>
+						</c:if>	
+						
 						<c:if test="${weather.parkAdvice == false}">
 							<li>${weather.parkAdvice}</li>
 						</c:if>

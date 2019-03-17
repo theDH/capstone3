@@ -4,8 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,6 +26,7 @@ import com.techelevator.npgeek.model.SurveyDAO;
 import com.techelevator.npgeek.model.WeatherDAO;
 
 @Controller
+
 public class ParksController {
 
 	@Autowired
@@ -44,10 +47,26 @@ public class ParksController {
 		return "parks";
 	}
 
+	@RequestMapping(path="/temp", method=RequestMethod.POST)
+	public String setTemp(@RequestParam String temp, HttpSession session) {
+	if(temp.equals("f")) {
+	session.setAttribute("temp", "f");
+	}
+	if(temp.equals("c")) {
+	session.setAttribute("temp", "c");
+	}
+
+	
+	return "redirect:/";
+	}
+	
+	
 	@RequestMapping (path="/parkDetails")
-	public String displayParkDetails(ModelMap modelHolder, @RequestParam String parkcode)  {
+	public String displayParkDetails(ModelMap modelHolder, @RequestParam String parkcode, HttpSession session)  {
 		
-		
+	System.out.println(session.getAttribute("temp").equals("c"));
+	
+	
 		Park park = parkDao.getParkDetails(parkcode);
 		
 		
