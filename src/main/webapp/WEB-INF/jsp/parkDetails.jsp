@@ -6,9 +6,23 @@
 <title>Park Details</title>
 </head>
 <body>
-	<div class="content is-large">
-		<h1>${park.parkname}</h1>
-	</div>
+<div class="container is-fluid">
+<div class="content is-large">
+<h1>${park.parkname}</h1>
+
+        <div class="notification">
+        
+        <p>${park.inspirationalquote}</p>
+        <p> -${park.inspirationalquotesource}</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
 
 	<div class="content is-medium">
 		<div class="container is-fluid">
@@ -31,8 +45,8 @@
 				<li>Entry fee: $${park.entryfee}.00</li>
 			</c:if>
 			<li>${park.acreage} sq acres</li>
-			<li>${park.elevationinfeet}ft elevation</li>
-			<li>${park.milesoftrail}miles of trails</li>
+			<li>${park.elevationinfeet} ft elevation</li>
+			<li>${park.milesoftrail} miles of trails</li>
 
 			<c:if test="${park.numberofcampsites > 0}">
 				<li>Number of campsites: ${park.numberofcampsites}</li>
@@ -40,9 +54,9 @@
 
 			<li>Climate: ${park.climate}</li>
 			<li>Annual visitor count: ${park.annualvisitorcount}</li>
-			<li>${park.numberofanimalspecies}different animal species</li>
-			<li>${park.inspirationalquote}</li>
-			<li>-${park.inspirationalquotesource}</li>
+			<li>${park.numberofanimalspecies} different animal species</li>
+			
+			
 
 		</ul>
 	</div>
@@ -53,7 +67,9 @@
 
 
 	<div class="table">
+
 		<tr>
+
 			<div class="columns">
 				<c:forEach var="weather" items="${weather}">
 				<div class="column">
@@ -62,47 +78,32 @@
 						
 							
 						<li>${weather.forecast}</li>
-						<c:if test='${temp eq "c"}'>
+						<c:if test='${temp eq "false"}'>
 							<li>${weather.highInC} degrees</li>
 							<li>${weather.lowInC} degrees</li>
 						</c:if>	
-						<c:if test='${temp eq "f"}'>
+						<c:if test='${temp eq "true"}'>
 							<li>${weather.high} degrees</li>
 							<li>${weather.low} degrees</li>
 						</c:if>	
 						
+						<c:if test='${temp eq null}'>
+							<li>${weather.high} degrees</li>
+							<li>${weather.low} degrees</li>
+						</c:if>	
 						<c:if test="${weather.parkAdvice == false}">
 							<li>${weather.parkAdvice}</li>
 						</c:if>
 						<c:if test="${weather.parkTempAdvice == false}">
 							<li>${weather.parkTempAdvice}</li>
 						</c:if>
-					</div>
+						</div>
 
 				</c:forEach>
 			</div>
 		</tr>
 
 	</div>
-
-	<c:forEach var="weather" items="${weather}">
-		<tr>
-			<td>${weather.fiveDayForecastValue}</td>
-			<c:choose>
-				<c:when test='${temp eq "Celsius"}'>
-					<td>${temp}</td>
-					<td>${weather.highInC}</td>
-				</c:when>
-				<c:when test='${temp eq "Fahrenheit"}'>
-					<td>${temp}</td>
-					<td>${weather.high}</td>
-				</c:when>
-			</c:choose>
-			<td>${weather.forecast}<img height=20px width=20px
-				src="<c:url value="/img/weather/${weather.forecast}.png"/>"/>
-			</td>
-		</tr>
-	</c:forEach>
 
 </body>
 </html>

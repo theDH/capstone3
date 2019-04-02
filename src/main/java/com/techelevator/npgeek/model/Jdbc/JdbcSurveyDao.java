@@ -32,31 +32,7 @@ public class JdbcSurveyDao implements SurveyDAO{
 		jdbcTemplate.update(sql, newSurvey.getPark(), newSurvey.getEmailAddress(), newSurvey.getState(), newSurvey.getActivityLevel());
 	}
 
-	@Override
-	public LinkedList<DailySurvey> getDailySurveys(){
-		LinkedList<DailySurvey> allSurveys = new LinkedList<DailySurvey>();
-		
-		String sql = "SELECT parkname, COUNT (survey_result.parkcode)  FROM survey_result JOIN park ON park.parkcode = survey_result.parkcode GROUP BY parkname ORDER BY COUNT DESC";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-		
-		while(results.next()) {
-			DailySurvey theSurvey = mapRowToPark(results);
-			allSurveys.add(theSurvey);
-		}
-		
-		return allSurveys;
-	
-	
-	}
 
-	private DailySurvey mapRowToPark(SqlRowSet results) {
-		DailySurvey theSurvey =new DailySurvey();
-		
-		theSurvey.setParkname(results.getString("parkname"));
-		theSurvey.setCount(results.getLong("count"));
-		
-		return theSurvey;
-	}
 		
 	
 }

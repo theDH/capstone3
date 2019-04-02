@@ -9,6 +9,14 @@ public class Survey {
 	private String park;
 	private Long surveyId;
 	
+	
+	public Long getSurveyId() {
+		return surveyId;
+	}
+	public void setSurveyId(Long surveyId) {
+		this.surveyId = surveyId;
+	}
+	
 	public String getEmailAddress() {
 		return emailAddress;
 	}
@@ -33,12 +41,7 @@ public class Survey {
 	public void setPark(String park) {
 		this.park = park;
 	}
-	public Long getSurveyid() {
-		return surveyId;
-	}
-	public void setSurveyid(Long surveyid) {
-		this.surveyId = surveyid;
-	}
+
  
 	
 	

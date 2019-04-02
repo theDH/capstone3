@@ -11,8 +11,8 @@
 			<label>Choose Fahrenheit or Celsius:</label>
 				<select name="temp">
 				<option value="" disabled selected>Select</option>
-				<option value="f">Fahrenheit</option>
-				<option value="c">Celsius</option>
+				<option value="true">Fahrenheit</option>
+				<option value="false">Celsius</option>
 				</select>
 
 			
@@ -40,10 +40,10 @@
     		
       			
      			
-				<p class="heading">><a href="${parkDetails}">${parks.parkname}</a></p>
+				<h1 class="heading" ><a href="${parkDetails}">${parks.parkname}</a></h1>
 				
 				
-				<textarea class="textarea">${parks.parkdescription}</textarea>
+				<textarea class="textarea" rows="13">${parks.parkdescription}</textarea>
 				
 	</div>
 

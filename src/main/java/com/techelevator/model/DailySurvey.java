@@ -3,9 +3,15 @@ package com.techelevator.model;
 public class DailySurvey {
 	private String parkname;
 	private Long count;
+	private String parkcode;
 	
 	
-	
+	public String getParkcode() {
+		return parkcode;
+	}
+	public void setParkcode(String parkcode) {
+		this.parkcode = parkcode;
+	}
 	public String getParkname() {
 		return parkname;
 	}
